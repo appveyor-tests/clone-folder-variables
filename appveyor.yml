@@ -5,4 +5,4 @@ clone_folder: $(GOPATH)\src\site\org\project
 
 test_script:
 - ps: $expected_value = "$env:gopath\src\site\org\project"
-- ps: if($env:appveyor_build_folder -ne $expected_value) { throw "Build folder: $env:appveyor_build_folder, expected: $expected_value"; }
+- ps: 'if($env:appveyor_build_folder -ne $expected_value) { throw "Build folder: $env:appveyor_build_folder, expected: $expected_value"; }'
