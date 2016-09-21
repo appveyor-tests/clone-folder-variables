@@ -1,7 +1,7 @@
 environment:
   GOPATH: $(HOMEDRIVE)$(HOMEPATH)\go
   MY_BUILD_DIR: $(appveyor_build_folder)\build
-  MY_DIST_DIR: %appveyor_build_folder%\${DIST_NAME}
+  MY_DIST_DIR: '%appveyor_build_folder%\${DIST_NAME}'
   ORIG_BUILD_FOLDER: ${appveyor_build_folder}
   DIST_NAME: dist-aaa
 
