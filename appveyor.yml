@@ -8,19 +8,19 @@ environment:
 clone_folder: $(GOPATH)\src\site\org\project
 
 test_script:
-- Write-Host "Checking appveyor_build_folder"
+- ps: Write-Host "Checking appveyor_build_folder"
 - ps: $expected_build_folder = "$env:gopath\src\site\org\project"
 - ps: 'if($env:appveyor_build_folder -ne $expected_build_folder) { throw "appveyor_build_folder: $env:appveyor_build_folder, expected: $expected_build_folder"; }'
 
-- Write-Host "Checking MY_BUILD_DIR"
+- ps: Write-Host "Checking MY_BUILD_DIR"
 - ps: $expected_my_build_dir = "$env:appveyor_build_folder\build"
 - ps: 'if($env:MY_BUILD_DIR -ne $expected_my_build_dir) { throw "MY_BUILD_DIR: $env:MY_BUILD_DIR, expected: $expected_my_build_dir"; }'
 
-- Write-Host "Checking MY_DIST_DIR"
+- ps: Write-Host "Checking MY_DIST_DIR"
 - ps: $expected_my_dist_dir = "$env:appveyor_build_folder\dist-aaa"
 - ps: 'if($env:MY_DIST_DIR -ne $expected_my_dist_dir) { throw "MY_DIST_DIR: $env:MY_DIST_DIR, expected: $expected_my_dist_dir"; }'
 
-- Write-Host "Checking ORIG_BUILD_FOLDER"
+- ps: Write-Host "Checking ORIG_BUILD_FOLDER"
 - ps: $expected_orig_build_folder = "$env:appveyor_build_folder"
 - ps: 'if($env:ORIG_BUILD_FOLDER -ne $expected_orig_build_folder) { throw "ORIG_BUILD_FOLDER: $env:ORIG_BUILD_FOLDER, expected: $expected_orig_build_folder"; }'
 
