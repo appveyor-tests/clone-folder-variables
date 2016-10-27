@@ -1,5 +1,7 @@
 environment:
-  GOPATH: $(HOMEDRIVE)$(HOMEPATH)\go
+  HOME: $(HOMEDRIVE)$(HOMEPATH)
+  GOPATH: $(HOME)\go
+  MY_PATH: $(GOPATH)\bin;C:\Python27\Scripts;$(HOME)\rebar
   MY_BUILD_DIR: $(appveyor_build_folder)\build
   MY_DIST_DIR: '%appveyor_build_folder%\${DIST_NAME}'
   ORIG_BUILD_FOLDER: ${appveyor_build_folder}
@@ -8,6 +10,20 @@ environment:
 clone_folder: $(GOPATH)\src\site\org\project
 
 test_script:
+- ps: $ErrorActionPreference = "Stop"
+
+- ps: Write-Host "Checking HOME"
+- ps: $expected_home = "C:\Users\appveyor"
+- ps: 'if($env:home -ne $expected_home) { throw "HOME: $env:home, expected: $expected_home"; }'
+
+- ps: Write-Host "Checking GOPATH"
+- ps: $expected_GOPATH = "C:\Users\appveyor\go"
+- ps: 'if($env:GOPATH -ne $expected_GOPATH) { throw "GOPATH: $env:GOPATH, expected: $expected_GOPATH"; }'
+
+- ps: Write-Host "Checking MY_PATH"
+- ps: $expected_MY_PATH = "C:\Users\appveyor\go\bin;C:\Python27\Scripts;C:\Users\appveyor\rebar"
+- ps: 'if($env:MY_PATH -ne $expected_MY_PATH) { throw "MY_PATH: $env:MY_PATH, expected: $expected_MY_PATH"; }'
+
 - ps: Write-Host "Checking appveyor_build_folder"
 - ps: $expected_build_folder = "$env:gopath\src\site\org\project"
 - ps: 'if($env:appveyor_build_folder -ne $expected_build_folder) { throw "appveyor_build_folder: $env:appveyor_build_folder, expected: $expected_build_folder"; }'
