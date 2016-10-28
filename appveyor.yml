@@ -5,7 +5,7 @@ environment:
   MY_BUILD_DIR: $(appveyor_build_folder)\build
   MY_DIST_DIR: '%appveyor_build_folder%\${DIST_NAME}'
   ORIG_BUILD_FOLDER: ${appveyor_build_folder}
-  DIST_NAME: dist-aaa
+  DIST_NAME: dist-aaabbb
 
 init:
 - appveyor version
@@ -36,7 +36,7 @@ test_script:
 - ps: 'if($env:MY_BUILD_DIR -ne $expected_my_build_dir) { throw "MY_BUILD_DIR: $env:MY_BUILD_DIR, expected: $expected_my_build_dir"; }'
 
 - ps: Write-Host "Checking MY_DIST_DIR"
-- ps: $expected_my_dist_dir = "$env:appveyor_build_folder\dist-aaa"
+- ps: $expected_my_dist_dir = "$env:appveyor_build_folder\dist-aaabbb"
 - ps: 'if($env:MY_DIST_DIR -ne $expected_my_dist_dir) { throw "MY_DIST_DIR: $env:MY_DIST_DIR, expected: $expected_my_dist_dir"; }'
 
 - ps: Write-Host "Checking ORIG_BUILD_FOLDER"
