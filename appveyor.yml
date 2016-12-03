@@ -6,6 +6,7 @@ environment:
   MY_DIST_DIR: '%appveyor_build_folder%\${DIST_NAME}'
   ORIG_BUILD_FOLDER: ${appveyor_build_folder}
   DIST_NAME: dist-aaabbb
+  PATH: 'C:\Ruby200\bin;%PATH%'
 
 init:
 - appveyor version
