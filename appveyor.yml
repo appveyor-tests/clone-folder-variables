@@ -16,6 +16,10 @@ clone_folder: $(GOPATH)\src\site\org\project
 test_script:
 - ps: $ErrorActionPreference = "Stop"
 
+- ps: Write-Host "Checking PATH"
+- ps: Write-Host "$env:PATH"
+- ps: 'if(-not $env:PATH.contains('C:\Ruby200\bin;')) { throw "PATH: does not contain C:\Ruby200\bin;"; }'
+
 - ps: Write-Host "Checking HOME"
 - ps: $expected_home = "C:\Users\appveyor"
 - ps: 'if($env:home -ne $expected_home) { throw "HOME: $env:home, expected: $expected_home"; }'
